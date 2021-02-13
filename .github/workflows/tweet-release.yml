@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: ethomson/send-tweet-action@v1
         with:
-          status: "New ${{ github.event.repository.name }} release ${{ github.event.release.name }} at ${{ github.event.release.html_url }}"
+          status: "New ${{ github.event.repository.name }} release ${{ github.event.release.tag_name }} at ${{ github.event.release.html_url }}"
           consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
