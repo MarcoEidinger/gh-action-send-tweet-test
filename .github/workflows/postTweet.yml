@@ -1,0 +1,26 @@
+name: Post Tweet
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      text:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Text to Tweet'
+        # Default value if no value is explicitly provided
+        default: 'This tweet was sent automatically. Kudos to @ethomson and his "Send Tweets" GitHub action :)'
+        # Input has to be provided for the workflow to run
+        required: true
+
+jobs:
+
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ethomson/send-tweet-action@v1
+      with:
+        status: "${{ github.event.inputs.text }}"
+        consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+        consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+        access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
